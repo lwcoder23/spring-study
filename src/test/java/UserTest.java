@@ -13,7 +13,7 @@ public class UserTest {
     public void userTest() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         User u = (User) ac.getBean("User");
-        u.s();
+        u.say();
         logger.info("success");
     }
 
