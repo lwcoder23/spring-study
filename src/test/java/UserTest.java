@@ -14,7 +14,6 @@ public class UserTest {
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
         User u = (User) ac.getBean("User");
         u.say();
-        u.say();
         logger.info("success");
     }
 
