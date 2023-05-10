@@ -12,8 +12,17 @@ public class UserTest {
     @Test
     public void userTest() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+
+        // 根据xml标签的 id来获取 bean
         User u = (User) ac.getBean("User");
         u.say();
+
+        // 根据类型来获取 bean
+        User user = ac.getBean(User.class);
+
+        // 根据 id 和 类型
+        ac.getBean("User", User.class);
+
         logger.info("success");
     }
 

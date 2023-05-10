@@ -3,5 +3,23 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="User" class="com.User"></bean>
+    <bean id="User" class="com.User">
+        <!-- set DI -->
+        <property name="name" value="wei"></property>
+        <property name="person">
+            <value><![CDATA[a < b]]></value>
+            <!-- 使用 CDATA 节 里面可以直接写特殊字符 -->
+        </property>
+
+        <!-- constructor DI -->
+        <constructor-arg name="name" value="value"></constructor-arg>
+        <constructor-arg name="person" value="&lt;&gt;"></constructor-arg>
+        <!-- &lt;&gt; 转义 -> <>  -->
+    </bean>
+
+    <!--interface has one impl-->
+    <bean id="userDao" class="com.UserDaoImpl"></bean>
+
+
+
 </beans>
