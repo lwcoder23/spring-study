@@ -6,7 +6,7 @@ public class User {
         System.out.println("null construct");
     }
     
-    public string name;
+    public String name;
     
     public void say() {
         System.out.println("function already");
