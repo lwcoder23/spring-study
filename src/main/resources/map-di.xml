@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user1" class="com.User"></bean>
+    <bean id="user2" class="com.User"></bean>
+
+    <bean id="person" class="com.Person">
+        <property name="id" value="1"></property>
+        <property name="userMap">
+            <map>
+                <entry>
+                    <!--key-->
+                    <key>
+                        <value>10</value>
+                    </key>
+                    <!--value-->
+                    <ref bean="user1"></ref>
+                </entry>
+
+                <entry>
+                    <key>
+                        <value>11</value>
+                    </key>
+                    <ref bean="user2"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+</beans>

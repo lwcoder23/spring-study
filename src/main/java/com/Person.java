@@ -1,6 +1,7 @@
 package com;
 
 import java.util.List;
+import java.util.Map;
 
 public class Person {
 
@@ -8,16 +9,21 @@ public class Person {
 
     private List<User> userList;
 
-    public Person() {
-    }
+    private Map<String,User> userMap;
 
-    public Person(Integer id, List<User> userList) {
-        this.id = id;
-        this.userList = userList;
+    public Person() {
     }
 
     public List<User> getUserList() {
         return userList;
+    }
+
+    public Map<String, User> getUserMap() {
+        return userMap;
+    }
+
+    public void setUserMap(Map<String, User> userMap) {
+        this.userMap = userMap;
     }
 
     public void setUserList(List<User> userList) {
