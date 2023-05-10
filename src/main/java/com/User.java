@@ -6,9 +6,12 @@ public class User {
         System.out.println("null construct");
     }
     
-    public String name;
+    private String name;
+
+    private Person person;
     
     public void say() {
         System.out.println("function already");
     }
 }
+
