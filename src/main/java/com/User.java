@@ -27,9 +27,19 @@ public class User {
         this.person = person;
     }
 
+    public String[] getLoves() {
+        return loves;
+    }
+
+    public void setLoves(String[] loves) {
+        this.loves = loves;
+    }
+
     private String name;
 
     private Person person;
+
+    private String[] loves;
     
     public void say() {
         System.out.println("function already");
