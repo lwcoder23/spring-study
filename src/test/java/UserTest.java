@@ -26,4 +26,9 @@ public class UserTest {
         logger.info("success");
     }
 
+    @Test
+    public void testJDBC() {
+
+    }
+
 }
