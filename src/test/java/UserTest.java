@@ -5,6 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class UserTest {
 
     private Logger logger = LoggerFactory.getLogger(User.class);
@@ -27,8 +31,11 @@ public class UserTest {
     }
 
     @Test
-    public void testJDBC() {
-
+    public void testJDBC() throws SQLException {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("jdbc.xml");
+        DataSource dataSource = ac.getBean(DataSource.class); /*获取该接口的实现类*/
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection);
     }
 
 }

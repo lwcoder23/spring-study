@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!-- properties文件里的信息和下面配置的这个类的属性是对应的，所以可以直接配置依赖中的类来获取本地的外部文件信息 -->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="url" value="${jdbc.url}"/> <!--在properties类型的文件中是按照键值对的方式来存储的-->
+        <property name="driverClassName" value="${jdbc.driver}"/> <!--所以在取的时候直接按照el表达式来取值-->
+        <property name="username" value="${jdbc.user}"/> <!--因为在上面已经 context 引用了，所以可以直接取用-->
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+</beans>
