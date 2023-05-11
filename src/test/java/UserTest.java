@@ -1,3 +1,4 @@
+import lifecycle.Emp;
 import com.User;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 
 public class UserTest {
 
-    private Logger logger = LoggerFactory.getLogger(User.class);
+    private Logger logger = LoggerFactory.getLogger(Emp.class);
 
     @Test
     public void userTest() {
@@ -32,10 +33,30 @@ public class UserTest {
 
     @Test
     public void testJDBC() throws SQLException {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("jdbc.xml");
+        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("jdbc.xml");
         DataSource dataSource = ac.getBean(DataSource.class); /*获取该接口的实现类*/
         Connection connection = dataSource.getConnection();
         System.out.println(connection);
+    }
+
+    @Test
+    public void beanLife() {
+        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("bean-life.xml");
+        Emp emp = ac.getBean("emp", Emp.class); // 在获取对象时会调用选定的初始化方法
+        // 创建对象完成
+        // 调用销毁方法
+        ac.close();  // 调用的是配置文件中选定的销毁方法
+
+        /*
+        *   1. 调用无参构造创建对象
+        *   2. property 标签使用set方法为bean对象设置初始参数
+        *   3. bean的后置处理器（初始化之前）
+        *   4. 调用选定的初始化方法来对bean进行初始化
+        *   5. bean的后置处理器（初始化之后）
+        *   6. getBean() 使用 bean
+        *   7. 调用 选定的销毁方法来销毁 bean
+        *   8. IoC关闭
+        * */
     }
 
 }
