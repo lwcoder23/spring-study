@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 根据类型自动注入 -->
+
+    <bean id="userController" class="demo_auto.UserController" autowire="byType"></bean>
+
+    <bean id="userService" class="demo_auto.UserServiceImpl" autowire="byType"></bean>
+
+    <bean id="userDao" class="demo_auto.UserDaoImpl"></bean>
+
+</beans>
+
