@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--开启组件扫描, 类上有@componen或其等效的注解 则将其加入容器-->
+    <context:component-scan base-package="annotation_auto">
+        <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
+        <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
+        <!--
+            type：设置排除或包含的依据
+            type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+            type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+        -->
+
+        <!--<context:exclude-filter type="" expression=""/>-->
+
+        <!--
+            type：设置排除或包含的依据
+            type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
+            type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
+        -->
+        <!--<context:include-filter type="" expression=""/>-->
+    </context:component-scan>
+
+</beans>
