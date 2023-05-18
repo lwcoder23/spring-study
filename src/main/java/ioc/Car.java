@@ -1,5 +1,8 @@
 package ioc;
 
+import ioc.annotation.Bean;
+
+@Bean
 public class Car {
 
     private String carName;
