@@ -1,8 +1,10 @@
 package ioc.bean;
 
 import ioc.annotation.Bean;
+import ioc.annotation.Di;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.Enumeration;
@@ -46,6 +48,26 @@ public class AnnotationApplicationContext implements ApplicationContext {
             throw new RuntimeException(e);
         }
 
+        loadDi();
+
+    }
+
+    private void loadDi() {
+        // 逐一遍历 map，获取，每个bean的参数列表，有注解的则进行属性注入
+        for(Map.Entry<Class, Object> entry : beanFactory.entrySet()) {
+            Object o = entry.getValue();
+            Class<?> oClass = o.getClass();
+            Field[] fields = oClass.getDeclaredFields();
+            for(Field field : fields) {
+                if (field.getAnnotation(Di.class) != null) {
+                    try {
+                        field.set(o, beanFactory.get(field.getType()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
     private void loadBean(File file) {
@@ -86,4 +108,6 @@ public class AnnotationApplicationContext implements ApplicationContext {
             return;
         }
     }
+
+
 }
