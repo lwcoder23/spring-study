@@ -3,5 +3,36 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="User" class="com.User"></bean>
+    <bean id="person" class="com.Person">
+        <property name="id" value="1"></property>
+    </bean>
+
+    <bean id="User" class="com.User">
+        <!-- set DI -->
+        <property name="name" value="wei"></property>
+        <!-- 用外部 bean使用 set 来给对象注入，使用 ref 字段表引用 -->
+        <property name="person" ref="person">
+            <!--<value><![CDATA[a < b]]></value>-->
+            <!-- 使用 CDATA 节 里面可以直接写特殊字符 -->
+        </property>
+
+        <!-- 级联赋值 -->
+        <property name="person.id" value="010"></property>
+
+        <!-- constructor DI -->
+        <constructor-arg name="name" value="value"></constructor-arg>
+        <constructor-arg name="person" value="&lt;&gt;"></constructor-arg>
+        <!-- &lt;&gt; 转义 -> <>  -->
+    </bean>
+
+    <!--interface has one impl-->
+    <bean id="userDao" class="com.UserDaoImpl">
+        <!-- set 使用内部 bean 注入对象 -->
+        <property name="person">
+            <bean name="person" class="com.Person">
+                <property name="id" value="2"></property>
+            </bean>
+        </property>
+    </bean>
+
 </beans>
